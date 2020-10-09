@@ -36,7 +36,7 @@
     align-items: center;
     @media screen and (max-width: 1024px) {
       background-color: #ffccb3;
-      position: sticky;
+      position: fixed;
       height: 100vh;
       width: 100%;
       bottom: 0;
@@ -78,9 +78,6 @@
       z-index: 2;
       cursor: pointer;
    }
-   &__item:nth-child(2) {
-    order: 1;
-   }
    &__links--open {
     clip-path: circle(1000px at 90% -15%);
     pointer-events: all;
@@ -94,9 +91,7 @@
    &__item--fade {
      opacity: 1;
    }
-   &__item--fade:nth-child(1) {
-     order: 2;
-   }
+  
   }
 
   
@@ -124,6 +119,7 @@
       transform: translateY(10px);
     }
     &--triggered {
+      position: relative;
       transform: translateX(-50px);
       background-color: transparent;
     }

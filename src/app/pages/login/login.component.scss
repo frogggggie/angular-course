@@ -1,9 +1,13 @@
 .login {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(400px, 700px);
+  grid-template-rows: minmax(100px, 700px);
   justify-items: center;
   align-items: center;
+  @media screen and (max-width: 525px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
   &__title {
     color: rgb(36, 34, 34);

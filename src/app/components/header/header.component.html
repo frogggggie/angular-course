@@ -2,6 +2,7 @@
   <div class="nav-bar__burger" (click)="triggerBurger()">
     <div [ngClass]="{'nav-bar__line': true, 'nav-bar__line--triggered': isTriggered}"></div>
   </div>
+
   <ul [ngClass]="{'nav-bar__links': true, 'nav-bar__links--open': isTriggered}">
 
     <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered }">
@@ -27,12 +28,6 @@
     </li>
 
 
-    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngIf="statusLogin">
-      <a  class="nav-bar__link" [routerLink]="[ '/'+userUrl ]">
-         {{ userUrl  | titlecase}}
-      </a>
-    </li>
-
     <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}">
       <a href="#" class="nav-bar__link nav-bar__link--logo" [routerLink]="['/home']" >
         <img src="/../assets/icons/logo.png" alt="logo" class="nav-bar__logo">
@@ -45,6 +40,12 @@
          [routerLink]="['/products/'+ category.nameUrl ]">
            {{ category.nameENG | titlecase }}
        </a>
+    </li>
+
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngIf="statusLogin">
+      <a  class="nav-bar__link" [routerLink]="[ '/'+userUrl ]">
+         {{ userUrl  | titlecase}}
+      </a>
     </li>
   </ul>
 </nav>
