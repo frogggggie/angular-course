@@ -1,0 +1,56 @@
+<div class="contain">
+  <div class="layout">
+    <div class="register">
+      <form #registerForm='ngForm' (submit)='signUp(registerForm)'>
+        <p class="title register__title">REGISTER</p>
+        <p class="subtitle register__subtitle text-center">
+            Please fill in the information below:
+        </p>
+       <mat-form-field class="btn-block" appearance='outline'>
+          <mat-label>First name</mat-label>
+          <input matInput
+                 [(ngModel)]="user.fname"
+                 name="fname"
+                 #fname='ngModel'
+                 required>
+        </mat-form-field>
+        <mat-form-field class="btn-block" appearance='outline'>
+          <mat-label>Last name</mat-label>
+          <input matInput
+                [(ngModel)]="user.lname"
+                name="lname"
+                #lname='ngModel'
+                required>
+        </mat-form-field> 
+        <mat-form-field class="btn-block" appearance='outline'>
+          <mat-label>Email</mat-label>
+          <input matInput 
+                 [(ngModel)]="user.email"
+                 name='email'
+                 #email='ngModel'
+                 pattern="\S+@\S+\.\S+"
+                 required>
+        </mat-form-field>
+        <mat-form-field class="btn-block" appearance='outline'>
+          <mat-label>Password</mat-label>
+          <input matInput
+                [(ngModel)]="user.password"
+                name='password'
+                #password='ngModel'
+                required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" 
+             [attr.aria-label]="'Hide password'" 
+             [attr.aria-pressed]="hide">
+           <mat-icon>
+             {{hide ? 'visibility_off' : 'visibility'}}
+           </mat-icon>
+        </button>
+        </mat-form-field>
+        <button class="btn-block button register__btn"  
+                [disabled]='registerForm.invalid'>
+                  sign up
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

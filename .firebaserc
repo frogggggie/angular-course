@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "candle-c5ec0": {
+      "hosting": {
+        "candle": [
+          "candle-c5ec0"
+        ]
+      }
+    }
+  }
+}

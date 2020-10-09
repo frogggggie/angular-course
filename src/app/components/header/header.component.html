@@ -1,0 +1,64 @@
+<nav class="nav-bar">
+  <div class="nav-bar__burger" (click)="triggerBurger()">
+    <div [ngClass]="{'nav-bar__line': true, 'nav-bar__line--triggered': isTriggered}"></div>
+  </div>
+  <ul [ngClass]="{'nav-bar__links': true, 'nav-bar__links--open': isTriggered}">
+
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered }">
+
+
+      <ng-container *ngIf="statusLogin; else notRegistered">
+          <img src="/../assets/icons/logout.png" alt="logout" (click)="openModal(logoutModal)" style="cursor: pointer;">
+      </ng-container>
+
+      <ng-template #notRegistered>
+        <a href="#" class="nav-bar__link" [routerLink]="['/login']">
+          <img src="/../assets/icons/person.png" alt="login">
+        </a>
+      </ng-template>
+
+
+      <a href="#" class="nav-bar__link  nav-bar__link--basket" [routerLink]="['/basket']">
+        <img src="/../assets/icons/bag.png" alt="cart">
+        <i class="nav-bar__counter">
+             {{ count }}
+        </i>
+      </a>
+    </li>
+
+
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngIf="statusLogin">
+      <a  class="nav-bar__link" [routerLink]="[ '/'+userUrl ]">
+         {{ userUrl  | titlecase}}
+      </a>
+    </li>
+
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}">
+      <a href="#" class="nav-bar__link nav-bar__link--logo" [routerLink]="['/home']" >
+        <img src="/../assets/icons/logo.png" alt="logo" class="nav-bar__logo">
+      </a>
+    </li>
+    
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngFor="let category of cloudCategories" >
+      <a href="#" class="nav-bar__link"
+    
+         [routerLink]="['/products/'+ category.nameUrl ]">
+           {{ category.nameENG | titlecase }}
+       </a>
+    </li>
+  </ul>
+</nav>
+
+
+<ng-template #logoutModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Are you sure you want to exit?</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body row pl-3">
+        <button mat-button (click)="signOut()">Yes, I am</button>
+        <button mat-button (click)="modalRef.hide()">No, cancel please</button>
+  </div>
+</ng-template>

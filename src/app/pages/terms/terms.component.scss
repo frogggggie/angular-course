@@ -1,0 +1,30 @@
+.terms {
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: 1 4fr;
+    justify-items: center;
+    &__title {
+        font-family: 'vanitas';
+        font-size: 20px;
+        text-transform: uppercase;
+        padding-bottom: 3rem;
+        @media screen and (max-width:768px) {
+            padding-bottom: 1rem;
+        }
+    }
+    &__content {
+        width: 60%;
+        line-height: 1.7;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 13px;
+        @media screen and (max-width: 1024px) {
+            width: 80%;
+        }
+        @media screen and (max-width: 768ox) {
+            width: 100%;
+        }
+     }
+}
+
+
+

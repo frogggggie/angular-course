@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/variables.scss';
+@import './assets/styles/mixins.scss';
+@import './theme.scss';
+
+@font-face {
+  font-family: 'crimson';
+  src: url(./assets/fonts/CrimsonText-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'crimsonBold';
+  src: url(./assets/fonts/CrimsonText-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: 'vanitas';
+  src: url(./assets/fonts/vanitas.ttf);
+}
+
+@font-face {
+  font-family: 'garamond';
+  src: url(./assets/fonts/EBGaramond-VariableFont_wght.ttf);
+}
+
+@font-face{
+  font-family: 'playfair';
+  src: url(./assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf);
+}
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Oxygen:wght@700&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+
+html, body {
+  height: 100vh;
+}
+body {
+  background-color: lightsalmon;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+
+

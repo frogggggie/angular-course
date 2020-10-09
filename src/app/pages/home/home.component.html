@@ -1,0 +1,68 @@
+<carousel>
+  <slide class="slide" style="background-image: url(/../assets/images/main_1.jpg);">
+    <div class="slide__content">
+      <p class="slide__descr">
+        Experience the life-changing magic of lighting a candle.
+      </p>
+      <div>
+        <a class="slide__btn" [routerLink]="['/products/all']">
+          shop now
+       </a>
+      </div>
+    </div>
+  </slide>
+
+  <slide class="slide" style="background-image: url(/../assets/images/main_1_2.jpg);">
+    <div class="slide__content">
+      <p class="slide__descr">
+        Experience the life-changing magic of lighting a candle.
+      </p>
+      <div>
+        <a class="slide__btn" [routerLink]="['/products/all']">
+          shop now
+       </a>
+      </div>
+    </div>
+  </slide>
+</carousel>
+
+
+
+
+<section class="about text-center container  mt-3"
+         data-aos="fade-up"
+         data-aos-offset="0"
+         data-aos-easing="linear"
+         data-aos-duration="1000">
+  <p class="about__descr text-center">
+          We are Brooklyn Candle Studio. Our dreamy scents
+          are inspired by nature and travel, moments and
+          memories. We hand-pour our candles in our Brookl
+          yn studio using sustainable soy wax and phthalat
+          e-free perfume oils infused with essential oils.
+          We pride ourselves on our meticulous craftsmansh
+          ip, ethical production, and accessible prices.
+  </p>
+  <a href="#" class="about__link" [routerLink]="['/products/all']">explore our candles</a>
+</section>
+
+
+
+<section class="products container-fluid  py-5">
+  <div class='products__card'
+        *ngFor="let cat of cloudCategories" 
+        [style.background-image]='"url("+cat.images[1]+")"'>
+    <div class="products__content">
+      <div class="products__title">
+           {{ cat.nameENG }}
+       </div>
+        <a class="products__btn" 
+          [routerLink]="['/products/'+ cat.nameUrl ]">
+            view products
+         </a>
+    </div>
+  </div>
+
+
+
+</section>

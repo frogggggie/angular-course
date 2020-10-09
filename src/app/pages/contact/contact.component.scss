@@ -1,0 +1,29 @@
+.contact {
+    min-height: 40vh;
+    margin-top: 2rem;
+    margin-bottom: 2rem; 
+    display: grid;
+    grid-template-columns: 1 1fr;
+    justify-items: center;
+    &__title {
+        color: rgb(36, 34, 34);
+        font-size: 25px;
+        letter-spacing: 4px;
+        font-family: 'crimsonBold';
+        text-align: center;
+        align-self: center;
+    }
+    &__link {
+        color: black;
+        line-height: 1.5;
+        font-size: 20px;
+        font-family: 'vanitas';
+    }
+    &__content {
+        text-align: center;
+    }
+
+   
+}
+
+

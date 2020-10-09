@@ -1,0 +1,91 @@
+<div class="product product-container my-3">
+
+  <button mat-button class="product__back-btn" (click)="backToProducts()">
+    <img src="./../../../assets/icons/back.png" alt="back">
+  </button>
+
+  <carousel class="product__carousel">
+    <slide class="product__slide--animated product__slide--fadeIn" *ngFor="let i of product.images">
+      <div [style.background-image]='"url("+i+")"' class="product__img"></div>
+    </slide>
+  </carousel>
+
+ <section class="product__about">
+    <p class="product__title">
+        {{ product.name | titlecase }}
+    </p>
+    <p class="product__price">
+        {{ product.price | currency }}
+    </p>
+
+    <div class="product__cart">
+
+  <div>
+    <button mat-button class="product__btn--count" (click)="countProduct(product, true)">
+        <mat-icon> add </mat-icon>
+    </button>
+    <input type="number"  class="product__input" [value]='product.count'>
+    <button mat-button class="product__btn--count" (click)="countProduct(product, false)">
+        <mat-icon> remove </mat-icon>
+    </button>
+  </div>
+
+   <div>
+     <button class="product__add-btn" (click)="addToCart(product)">add to cart</button>
+   </div>
+ </div>
+
+  <p class="product__descr">
+    {{ product.description }} 
+ </p>
+
+    <mat-accordion multi class='product__accordion'>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"  class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            <p class="panel-title"> Product Details</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+        <p class="panel-content">
+           {{ product.details }}
+        </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel-title">
+            Candle Care and Safety
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="panel-content">
+            These luxe brushed gold travel-friendly tins are perfect for th
+            e office or jetsetting around the globe. Instantly cozify any h
+            otel room with your favorite scent and the warm glow of candleli
+            ght. Or scatter them throughout your home give each room a diffe
+            rent scent personality.
+            Burn time: Up to 30 hours per candle
+            Tin Height: 1.75"
+            Tin Diameter: 2.5"
+        </p>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel-title">
+             Shipping + Exchanges
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="panel-content">
+            These luxe brushed gold travel-friendly tins are perfect for th
+            e office or jetsetting around the globe. Instantly cozify any h
+            otel room with your favorite scent and the warm glow of candleli
+            ght. Or scatter them throughout your home give each room a diffe
+            rent scent personality.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+</section>
+</div>
+
+
+

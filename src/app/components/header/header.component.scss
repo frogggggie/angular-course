@@ -1,0 +1,143 @@
+.nav-bar {
+  height: 10vh;
+  z-index: 1000;
+  border-bottom: .5px solid rgb(172, 168, 168);
+  @media screen and (max-width: 1024px) {
+    position: relative;
+  }
+ 
+  &__basket {
+    position: relative;
+  }
+  &__counter {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: 14px;
+    @media screen and (max-width: 768px) {
+      top: 9px;
+    }
+  }
+
+  &__link--logo {
+    display: inline-block;
+    text-align: center;
+    width: 60%;
+  }
+  &__logo {
+    width: 70%;
+  }
+  &__links {
+    display: flex;
+    padding-left: 10px;
+    width: auto;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    @media screen and (max-width: 1024px) {
+      background-color: #ffccb3;
+      position: sticky;
+      height: 100vh;
+      width: 100%;
+      bottom: 0;
+      top: 0;
+      flex-direction: column;
+      clip-path: circle(100px at 100% -15%);
+      transition: all 1s ease-out;
+      pointer-events: none;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: black;
+    font-family: 'vanitas';
+    line-height: 1.5;
+    font-size: 18px;
+    width: 100%;
+    @media screen and (max-width: 768px) {
+      font-size: 25px;
+    }
+  }
+  &__link--basket {
+    position: relative;
+  }
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+
+  .nav-bar {
+   &__burger {
+      position: absolute;
+      right: 3%;
+      top: 50%;
+      transform: translate(-5%, -50%);
+      z-index: 2;
+      cursor: pointer;
+   }
+   &__item:nth-child(2) {
+    order: 1;
+   }
+   &__links--open {
+    clip-path: circle(1000px at 90% -15%);
+    pointer-events: all;
+   }
+   &__item {
+    opacity: 0;
+   }
+   &__item {
+    transition: all .5s ease .2s;
+   }
+   &__item--fade {
+     opacity: 1;
+   }
+   &__item--fade:nth-child(1) {
+     order: 2;
+   }
+  }
+
+  
+  .nav-bar__line {
+    background-color: black;
+    margin: 5px;
+    width: 30px;
+    height: 2px;
+    border-radius: 7px;
+    transition: all .7s ease;
+    cursor: pointer;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 2px;
+      background-color: black;
+      border-radius: 7px;
+      transition: all .7s ease;
+    }
+    &::before {
+      transform: translateY(-10px);
+    }
+    &::after {
+      transform: translateY(10px);
+    }
+    &--triggered {
+      transform: translateX(-50px);
+      background-color: transparent;
+    }
+    &--triggered::before {
+      transform: rotate(45deg) translate(35px, -35px);
+    }
+    &--triggered::after {
+      transform: rotate(-45deg) translate(35px, 35px);
+    }
+  }
+}
+
+
+.modal-title {
+  font-family: 'garabond';
+  font-size: 18px;
+}
