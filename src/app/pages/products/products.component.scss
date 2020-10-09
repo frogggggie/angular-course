@@ -69,14 +69,14 @@
             height: 50%;
             background-position: right 35% bottom 0;
         }
-        @media screen and (max-width: 330px) {
+        @media screen and (max-width: 340px) {
             height: 45%;
         }
     }
     &__scent {
         font-size: 14px;
         height: 30px;
-        @media screen and (max-width: 330px) {
+        @media screen and (max-width: 340px) {
             font-size: 11px;
         }
     }
@@ -90,7 +90,7 @@
       @media screen and (max-width: 576px) {
           font-size: initial;
       }
-      @media screen and (max-width: 330px) {
+      @media screen and (max-width: 340px) {
           font-size: 14px;
       }
     }
