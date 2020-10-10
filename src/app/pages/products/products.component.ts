@@ -62,10 +62,10 @@ export class ProductsComponent implements OnInit {
             return data;
           });
           this.filteredProducts = this.productsArray.filter(product => product.category.nameUrl === prod);
-          this.allStatus = false;
+          this.allStatus = true;
           if(prod === 'all') {
             this.filteredProducts = this.productsArray;
-            this.allStatus = true;
+            this.allStatus = false;
           }
           this.config.totalItems = this.filteredProducts.length;
       });
