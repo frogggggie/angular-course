@@ -69,28 +69,30 @@
             height: 50%;
             background-position: right 35% bottom 0;
         }
-        @media screen and (max-width: 340px) {
+        @media screen and (max-width: 330px) {
             height: 45%;
         }
     }
     &__scent {
         font-size: 14px;
+        line-height: 1.2;
         height: 30px;
-        @media screen and (max-width: 340px) {
+        @media screen and (max-width: 330px) {
             font-size: 11px;
         }
     }
     &__price {
         font-size: 18px;
+        line-height: 1.2;
     }
     &__title {
       font-weight: 500;
       font-size: 20px;
-      height: 40px;
+      line-height: 1.2;
       @media screen and (max-width: 576px) {
           font-size: initial;
       }
-      @media screen and (max-width: 340px) {
+      @media screen and (max-width: 330px) {
           font-size: 14px;
       }
     }
