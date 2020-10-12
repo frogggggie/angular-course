@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { AfServiceService } from './../../shared/services/af-service.service';
 import { IProduct } from './../../shared/interfaces/product.interface';
 import { Component, OnInit } from '@angular/core';
@@ -18,6 +19,7 @@ export class ProductDetailsComponent implements OnInit {
 
   product: IProduct;
   panelOpenState = false;
+  status: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +41,7 @@ getOneFirebaseProduct(): void {
     .then(
       data => {
         this.product = data.data() as  IProduct;
+        this.status = true;
       }
     )
 }

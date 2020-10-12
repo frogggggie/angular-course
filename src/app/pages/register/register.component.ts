@@ -17,6 +17,9 @@ user = {
   password: ''
 };
 hide = true;
+registerError: string = '';
+errorStatus: boolean = false;
+
 
   constructor(
     private auth: AfServiceService
@@ -26,10 +29,22 @@ hide = true;
   ngOnInit(): void {
   }
 
-
-
-  signUp(form: NgForm): void {
+  
+  signUp(): void {
     this.auth.signUp(this.user);
+    this.auth.authStatus.subscribe(
+      error => {
+        if(error.code === 'auth/email-already-in-use') {
+            this.registerError = 'This email is already taken';
+            this.errorStatus = true;
+        }
+        else {
+          console.log(error)
+        }
+      }
+    )
+    
+
   }
 
 

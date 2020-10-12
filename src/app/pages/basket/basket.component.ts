@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AfServiceService } from './../../shared/services/af-service.service';
 import { Order } from './../../shared/models/order.model';
@@ -28,10 +29,11 @@ order = {
   totalPrice: number;
   userStatus: boolean = false;
   user: any;
-  subscribe: Subscription;
+  subscribe: Subscription = new Subscription;
 
   constructor(
-    private service: AfServiceService
+    private service: AfServiceService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +55,7 @@ order = {
   }
 
 
-getLocalProducts(): void {
+private getLocalProducts(): void {
   if (localStorage.length > 0 && localStorage.getItem('basket')) {
    this.localProducts = JSON.parse(localStorage.getItem('basket'));
    this.getTotalPrice();
@@ -75,7 +77,7 @@ updateLocalProducts(): void {
 }
 
 
-getLocalUser(): void{
+private getLocalUser(): void{
   if(localStorage.length > 0 && localStorage.getItem('user')) {
     const user = JSON.parse(localStorage.getItem('user'));
    if(user.role === 'user') {
@@ -127,6 +129,7 @@ addOrder(form: NgForm): void {
   this.service.basket.next(this.localProducts);
   this.service.addOrder(order).then(
     () => {
+      this.router.navigateByUrl('/');
       form.resetForm();
       this.localProducts = [];
       this.updateLocalProducts();

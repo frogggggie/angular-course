@@ -15,9 +15,10 @@ export class AfServiceService {
 
   basket: Subject<any> = new Subject<any>();
   currentUser: any;
-  userStatus: Subject<any> = new Subject;
+  userStatus: Subject<any> = new Subject<string>();
   userID: string = '';
-  
+  authStatus: Subject<any> = new Subject<any>();
+
   constructor(
     private auth: AngularFireAuth,
     private firestore: AngularFirestore,
@@ -75,10 +76,14 @@ export class AfServiceService {
 addOrder(order: IOrder) {
   return this.firestore.collection('orders').doc(order.id.toString()).set({...order})
      .then(
-       () => console.log('order is added')
+       () => console.log('order added')
+     )
+     .catch(
+       error => console.log(error)
      )
   }
 
+  
 
 getOrders() {
   return this.firestore.collection('orders').snapshotChanges();
@@ -121,7 +126,7 @@ signUp(newUser) {
             })
             .catch( error => console.log(error));
          })
-         .catch( error => console.log(error));
+         .catch( error => this.authStatus.next(error));
  }
 
 
@@ -150,7 +155,9 @@ signIn(email: string, password: string) {
                 })
             })
          })
-       .catch( error => console.log(error))
+       .catch( error => {
+         this.authStatus.next(error);
+       })
 }
 
 
@@ -194,7 +201,6 @@ updateOrderInfo(order) {
 getUserOrders() {
   return this.firestore.collection('users').doc(this.userID).collection('orders').snapshotChanges();
 }
-
 
 
 

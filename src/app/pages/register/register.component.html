@@ -1,7 +1,7 @@
 <div class="contain">
   <div class="layout">
     <div class="register">
-      <form #registerForm='ngForm' (submit)='signUp(registerForm)'>
+      <form #registerForm='ngForm' (submit)='signUp()'>
         <p class="title register__title">REGISTER</p>
         <p class="subtitle register__subtitle text-center">
             Please fill in the information below:
@@ -46,6 +46,9 @@
            </mat-icon>
         </button>
         </mat-form-field>
+        <p class="text-danger" [style.visibility]='errorStatus? "visible" : "hidden"'>
+          {{ registerError }}
+        </p>
         <button class="btn-block button register__btn"  
                 [disabled]='registerForm.invalid'>
                   sign up

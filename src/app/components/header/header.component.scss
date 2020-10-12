@@ -36,11 +36,8 @@
     align-items: center;
     @media screen and (max-width: 1024px) {
       background-color: #ffccb3;
-      position: fixed;
       height: 100vh;
       width: 100%;
-      bottom: 0;
-      top: 0;
       flex-direction: column;
       clip-path: circle(10px at 100% -15%);
       transition: all 1s ease-out;

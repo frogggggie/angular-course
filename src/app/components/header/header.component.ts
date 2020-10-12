@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  getCategories() {
+  private getCategories() {
     this.basketSubscription = this.service.getCategories()
     .subscribe(data => {
       this.cloudCategories = data.map(
@@ -72,15 +72,16 @@ productLength(): void {
 }
  
 
-basketFromLocal(): void {
+private basketFromLocal(): void {
   if(localStorage.length > 0 && localStorage.getItem('basket')) {
     this.localOrders = JSON.parse(localStorage.getItem('basket'));
-    this.count = this.localOrders.length;
+    const count = this.localOrders.reduce((total, accum) => total + accum.count, 0)
+    this.count = count;
   }
 }
 
 
-checkUser(): void {
+private checkUser(): void {
  this.userSubscripton =  this.service.userStatus.subscribe(
     () => {
       this.checkLocalUser();

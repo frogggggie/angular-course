@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "candle",
+    "public": "candle-host",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
     password: ''
   };
   hide = true;
+  loginStatus: boolean = false;
+  loginError: string = '';
+  
 
   constructor(
     private auth: AfServiceService
@@ -26,6 +29,22 @@ export class LoginComponent implements OnInit {
 
   signIn(): void {
     this.auth.signIn(this.user.email, this.user.password);
+    this.auth.authStatus.subscribe(
+      error=> {
+        if(error.code === 'auth/wrong-password'){ 
+        this.loginError = 'Seems you entered a wrong password';
+        this.loginStatus = true;
+        }
+        else if(error.code === 'auth/user-not-found') {
+        this.loginError = "There's no user with such email";
+        this.loginStatus = true;
+      }
+       else {
+         console.log(error)
+       }
+      }
+     
+    )
   }
 
 }
