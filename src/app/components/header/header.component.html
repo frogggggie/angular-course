@@ -5,7 +5,7 @@
 
   <ul [ngClass]="{'nav-bar__links': true, 'nav-bar__links--open': isTriggered}">
 
-    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered }">
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered }" (click)="isTriggered = !isTriggered">
 
 
       <ng-container *ngIf="statusLogin; else notRegistered">
@@ -28,13 +28,13 @@
     </li>
 
 
-    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}">
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" (click)="isTriggered = !isTriggered">
       <a href="#" class="nav-bar__link nav-bar__link--logo" [routerLink]="['/home']" >
         <img src="/../assets/icons/logo.png" alt="logo" class="nav-bar__logo">
       </a>
     </li>
     
-    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngFor="let category of cloudCategories" >
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngFor="let category of cloudCategories" (click)="isTriggered = !isTriggered">
       <a href="#" class="nav-bar__link"
     
          [routerLink]="['/products/'+ category.nameUrl ]">
@@ -42,7 +42,7 @@
        </a>
     </li>
 
-    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngIf="statusLogin">
+    <li [ngClass]="{'nav-bar__item': true, 'nav-bar__item--fade': isTriggered}" *ngIf="statusLogin" (click)="isTriggered = !isTriggered">
       <a  class="nav-bar__link" [routerLink]="[ '/'+userUrl ]">
          {{ userUrl  | titlecase}}
       </a>
