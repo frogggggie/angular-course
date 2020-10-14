@@ -1,4 +1,4 @@
-import {ICategory} from './../interfaces/category.interface';
+import { ICategory } from './../interfaces/category.interface';
 
 export class Category implements ICategory {
   constructor(
@@ -7,6 +7,5 @@ export class Category implements ICategory {
     public nameUrl: string,
     public description: string,
     public images: string[]
-  ) {
-  }
+  ) {}
 }

@@ -13,7 +13,7 @@
     color: rgb(36, 34, 34);
     font-size: 22px;
     letter-spacing: 4px;
-    font-family: 'crimsonBold';
+    font-family: "crimsonBold";
     text-align: center;
   }
 
@@ -35,11 +35,10 @@
     line-height: 1.5;
 
     &:hover {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 }
-
 
 .login__btn {
   padding: 8px 10px;
@@ -57,7 +56,7 @@
   text-transform: uppercase;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     top: 0;
@@ -65,7 +64,7 @@
     background-color: white;
     width: 0;
     transition: all 1.5s ease;
-    z-index: -2
+    z-index: -2;
   }
 
   &:hover::before {
@@ -78,7 +77,6 @@
     color: #000;
   }
 }
-
 
 .error {
   font-size: 13px;

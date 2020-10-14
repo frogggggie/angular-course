@@ -1,16 +1,16 @@
 .nav-bar {
   height: 10vh;
   z-index: 1000;
-  border-bottom: .5px solid rgb(172, 168, 168);
+  border-bottom: 0.5px solid rgb(172, 168, 168);
   @media screen and (max-width: 1024px) {
     position: relative;
   }
- 
+
   &__basket {
     position: relative;
   }
   &__counter {
-     position: absolute;
+    position: absolute;
     text-align: center;
     width: 24px;
     left: 3px;
@@ -40,6 +40,7 @@
       background-color: #ffccb3;
       height: 100vh;
       width: 100%;
+      padding-bottom: 100px;
       flex-direction: column;
       clip-path: circle(10px at 100% -15%);
       transition: all 1s ease-out;
@@ -50,7 +51,7 @@
   &__link {
     text-decoration: none;
     color: black;
-    font-family: 'vanitas';
+    font-family: "vanitas";
     line-height: 1.5;
     font-size: 18px;
     width: 100%;
@@ -63,52 +64,48 @@
   }
 }
 
-
-
 @media screen and (max-width: 1024px) {
-
   .nav-bar {
-   &__burger {
+    &__burger {
       position: absolute;
       right: 3%;
       top: 50%;
       transform: translate(-5%, -50%);
       z-index: 2;
       cursor: pointer;
-   }
-   &__links--open {
-    clip-path: circle(1000px at 90% -15%);
-    pointer-events: all;
-   }
-   &__item {
-    opacity: 0;
-   }
-   &__item {
-    transition: all .5s ease .2s;
-   }
-   &__item--fade {
-     opacity: 1;
-   }
-  
+    }
+    &__links--open {
+      clip-path: circle(1000px at 90% -15%);
+      pointer-events: all;
+    }
+    &__item {
+      opacity: 0;
+    }
+    &__item {
+      transition: all 0.5s ease 0.2s;
+    }
+    &__item--fade {
+      opacity: 1;
+    }
   }
 
-  
   .nav-bar__line {
     background-color: black;
     margin: 5px;
     width: 30px;
     height: 2px;
     border-radius: 7px;
-    transition: all .7s ease;
+    transition: all 0.7s ease;
     cursor: pointer;
-    &::before, &::after {
-      content: '';
+    &::before,
+    &::after {
+      content: "";
       position: absolute;
       width: 30px;
       height: 2px;
       background-color: black;
       border-radius: 7px;
-      transition: all .7s ease;
+      transition: all 0.7s ease;
     }
     &::before {
       transform: translateY(-10px);
@@ -130,8 +127,7 @@
   }
 }
 
-
 .modal-title {
-  font-family: 'garabond';
+  font-family: "garabond";
   font-size: 18px;
 }

@@ -1,52 +1,58 @@
 <div class="container-fluid">
-<div id="table-responsive">
-  <table class="table">
+  <div id="table-responsive">
+    <table class="table">
       <thead>
-          <tr>
-              <th>#</th>
-              <th>Username</th>
-              <th>Phone number</th>
-              <th>Address</th>
-              <th>Order</th>
-              <th>Total price</th>
-              <th>Comment</th>
-              <th>Date</th>
-              <th>Delete</th>
-          </tr>
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Phone number</th>
+          <th>Address</th>
+          <th>Order</th>
+          <th>Total price</th>
+          <th>Comment</th>
+          <th>Date</th>
+          <th>Delete</th>
+        </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let o of cloudOrders | paginate: { itemsPerPage: 10, currentPage: page }; let i = index">
-              <td data-title="#">{{ i + 1 }}</td>
-              <td data-title="Username">{{ o.userName }}</td>
-              <td data-title="Phone number">{{ o.userPhone }}</td>
-              <td data-title="Address">
-                {{ o.userCity }}
-                {{ o.userStreet }}
-                {{ o.userHouse }}
-              </td>
-              <td data-title="Order">
-                <p *ngFor="let product of o.ordersDetails">
-                  {{ product.name | titlecase }}
-                  {{ product.count }} item(s)
-                </p>
-              </td>
-              <td data-title="Total price">
-                {{ o.totalPayment | currency }}
-              </td>
-              <td data-title="Comment">{{ o.userComment }}</td>
-              <td data-title="Date">{{ o.date | date:'shortDate' }}</td>
-              <td data-title="Delete">   
-                <button mat-icon-button 
-                class="borderless"
-                (click)="deleteFirebaseOrder(o)">
-                 <mat-icon>delete_outline</mat-icon>
-                </button>
-              </td>
-          </tr>
+        <tr
+          *ngFor="
+            let o of cloudOrders
+              | paginate: { itemsPerPage: 10, currentPage: page };
+            let i = index
+          "
+        >
+          <td data-title="#">{{ i + 1 }}</td>
+          <td data-title="Username">{{ o.userName }}</td>
+          <td data-title="Phone number">{{ o.userPhone }}</td>
+          <td data-title="Address">
+            {{ o.userCity }}
+            {{ o.userStreet }}
+            {{ o.userHouse }}
+          </td>
+          <td data-title="Order">
+            <p *ngFor="let product of o.ordersDetails">
+              {{ product.name | titlecase }}
+              {{ product.count }} item(s)
+            </p>
+          </td>
+          <td data-title="Total price">
+            {{ o.totalPayment | currency }}
+          </td>
+          <td data-title="Comment">{{ o.userComment }}</td>
+          <td data-title="Date">{{ o.date | date: "shortDate" }}</td>
+          <td data-title="Delete">
+            <button
+              mat-icon-button
+              class="borderless"
+              (click)="deleteFirebaseOrder(o)"
+            >
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </td>
+        </tr>
       </tbody>
-  </table>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
-<pagination-controls (pageChange)="page = $event"></pagination-controls>
-</div>
-
-

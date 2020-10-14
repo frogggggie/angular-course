@@ -1,144 +1,165 @@
 <button mat-raised-button (click)="openModal(categoryModal)">
-  <mat-icon>
-    add
-  </mat-icon>
+  <mat-icon> add </mat-icon>
 </button>
 
 <div id="table-responsive">
   <table class="table">
-      <thead>
-          <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Edit</th>
-              <th>Delete</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let cat of cloudCategories; let i = index">
-              <td data-title="#">{{ i + 1 }}</td>
-              <td data-title="Name">{{ cat.nameENG | titlecase }}</td>
-              <td data-title="Description">{{ cat.description  }}</td>
-              <td data-title="Edit">
-                <button mat-icon-button  (click)="openModal(categoryModal, cat)">
-                  <mat-icon>edit_outline</mat-icon>
-                </button>
-              </td>
-              <td data-title="Delete">
-                <button mat-icon-button class="borderless" (click)="deleteCategory(confirmModal, cat)">
-                  <mat-icon>delete_outline</mat-icon>
-                </button>
-              </td>
-          </tr>
-      </tbody>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cat of cloudCategories; let i = index">
+        <td data-title="#">{{ i + 1 }}</td>
+        <td data-title="Name">{{ cat.nameENG | titlecase }}</td>
+        <td data-title="Description">{{ cat.description }}</td>
+        <td data-title="Edit">
+          <button mat-icon-button (click)="openModal(categoryModal, cat)">
+            <mat-icon>edit_outline</mat-icon>
+          </button>
+        </td>
+        <td data-title="Delete">
+          <button
+            mat-icon-button
+            class="borderless"
+            (click)="deleteCategory(confirmModal, cat)"
+          >
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
 
-
 <ng-template #confirmModal>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Are you sure you want to delete this category?</h4>
-    <button type="button" class="close pull-right borderless" aria-label="Close" (click)="modalRef.hide()">
+    <h4 class="modal-title pull-left">
+      Are you sure you want to delete this category?
+    </h4>
+    <button
+      type="button"
+      class="close pull-right borderless"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body d-flex justify-content-around">
-    <button class="btn btn-danger" (click)="confirmDeleting()">Yes, sure</button>
-    <button class="btn btn-secondary" (click)="modalRef.hide()">No, cancel</button>
+    <button class="btn btn-danger" (click)="confirmDeleting()">
+      Yes, sure
+    </button>
+    <button class="btn btn-secondary" (click)="modalRef.hide()">
+      No, cancel
+    </button>
   </div>
 </ng-template>
 
-
-
 <ng-template #categoryModal>
-
   <div class="modal-header">
     <h4 class="modal-title pull-left">Edit category</h4>
-    <button type="button" class="close pull-right borderless" aria-label="Close" (click)="resetForm(categoryForm)">
+    <button
+      type="button"
+      class="close pull-right borderless"
+      aria-label="Close"
+      (click)="resetForm(categoryForm)"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 
   <div class="modal-body">
-
-    <form  #categoryForm="ngForm">
-
+    <form #categoryForm="ngForm">
       <mat-form-field appearance="outline" class="col-12">
         <mat-label>Category name</mat-label>
-        <input matInput  name="nameENG" 
-               [(ngModel)]="category.nameENG"  
-               #nameENG='ngModel'>
+        <input
+          matInput
+          name="nameENG"
+          [(ngModel)]="category.nameENG"
+          #nameENG="ngModel"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-12">
         <mat-label>Category url name</mat-label>
-        <input matInput 
-               name="nameUrl"  
-               [(ngModel)]="category.nameUrl" 
-               #nameUrl='ngModel'>
+        <input
+          matInput
+          name="nameUrl"
+          [(ngModel)]="category.nameUrl"
+          #nameUrl="ngModel"
+        />
       </mat-form-field>
 
-      <mat-form-field class="col-12" appearance='outline'>
+      <mat-form-field class="col-12" appearance="outline">
         <mat-label>About category</mat-label>
-        <textarea matInput 
-                  name="description"  
-                  [(ngModel)]="category.description" 
-                  #description='ngModel'></textarea>
+        <textarea
+          matInput
+          name="description"
+          [(ngModel)]="category.description"
+          #description="ngModel"
+        ></textarea>
       </mat-form-field>
     </form>
 
+    <div class="custom-file col-lg-6 col-12 col-md-6 col-sm-6">
+      <input
+        type="file"
+        class="custom-file-input"
+        id="file"
+        accept=".jpg, .jpeg, .png"
+        (change)="uploadFile($event)"
+      />
+      <label class="custom-file-label">must contain at least two pics...</label>
+    </div>
 
-      <div class="custom-file col-lg-6 col-12 col-md-6 col-sm-6">
-        <input type="file"
-              class="custom-file-input"
-              id="file"
-              accept=".jpg, .jpeg, .png"
-              (change)='uploadFile($event)'>
-        <label class="custom-file-label">must contain at least two pics...</label>
+    <div *ngIf="categoryImages.length > 0" class="images-container">
+      <div
+        *ngFor="let img of categoryImages; let i = index"
+        class="images-container__item"
+        [style.background-image]="'url(' + img + ')'"
+      >
+        <button
+          type="button"
+          aria-label="Close"
+          class="images-container__remove close pull-right borderless"
+          [disabled]="categoryImages.length <= 2"
+          (click)="deleteEditedImage(i)"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-  
-  
-      <div *ngIf="categoryImages.length > 0" class="images-container">
-        <div *ngFor="let img of categoryImages; let i = index"
-             class="images-container__item"
-             [style.background-image]='"url(" + img + ")"'>
-          <button
-            type="button"
-            aria-label="Close"
-            class="images-container__remove close pull-right borderless"
-            [disabled] = 'categoryImages.length <= 2'
-            (click)="deleteEditedImage(i)">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </div>
+    </div>
   </div>
-
 
   <div class="modal-footer">
     <ng-container *ngIf="!isEdited; else editButton">
-      <button type="submit" class="btn  btn-block  category__btn" 
-               (click)="addCategory(categoryForm)"
-               [disabled]='!categoryForm.valid || categoryImages.length < 2'>
-              add category
+      <button
+        type="submit"
+        class="btn btn-block category__btn"
+        (click)="addCategory(categoryForm)"
+        [disabled]="!categoryForm.valid || categoryImages.length < 2"
+      >
+        add category
       </button>
     </ng-container>
 
     <ng-template #editButton>
-      <button type="submit" class="btn  btn-block  category__btn" 
-              (click)="addCategory(categoryForm)"
-              [disabled]='!categoryForm.valid || categoryImages.length < 2' #editButton>
-              edit category
+      <button
+        type="submit"
+        class="btn btn-block category__btn"
+        (click)="addCategory(categoryForm)"
+        [disabled]="!categoryForm.valid || categoryImages.length < 2"
+        #editButton
+      >
+        edit category
       </button>
     </ng-template>
   </div>
-
 </ng-template>
-
-
-
-
-
-

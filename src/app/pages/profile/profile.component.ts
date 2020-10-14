@@ -7,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
   user: any;
   userEmail: string;
   userInfo: any;
@@ -21,50 +20,38 @@ export class ProfileComponent implements OnInit {
   constructor(
     private service: AfServiceService,
     private db: AngularFirestore
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getLocalUser();
     this.getFireUser();
   }
 
-
   ngOnDestroy(): void {
-  this.userSubscription.unsubscribe();
-  this.ordersSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
+    this.ordersSubscription.unsubscribe();
   }
 
   getLocalUser(): void {
-   this.user = JSON.parse(localStorage.getItem('user'));
-   this.userEmail = this.user.userEmail;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.userEmail = this.user.userEmail;
   }
 
+  getFireUser(): void {
+    this.userSubscription = this.service
+      .getUser(this.userEmail)
+      .subscribe((data) => {
+        this.userInfo = data;
+        this.getFireUserOrders();
+      });
+  }
 
-  
-getFireUser(): void {
-  this.userSubscription = this.service.getUser(this.userEmail).subscribe(
-    data => {
-      this.userInfo = data; 
-      this.getFireUserOrders();
-    }
-  )
-}
-
-
-getFireUserOrders(): void {
-  this.ordersSubscription = this.service.getUserOrders()
-    .subscribe( data => {
-      this.orders = data.map(
-      order => {
+  getFireUserOrders(): void {
+    this.ordersSubscription = this.service.getUserOrders().subscribe((data) => {
+      this.orders = data.map((order) => {
         const data = order.payload.doc.data() as IOrder;
-         return data;
-      })
-    })
-}
-
-
-
-
-  
-
+        return data;
+      });
+    });
+  }
 }

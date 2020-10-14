@@ -9,7 +9,7 @@
     text-align: center;
     padding-bottom: 35px;
     color: #ffff;
-    font-family: 'garamond';
+    font-family: "garamond";
   }
   &__content {
     height: 100%;
@@ -37,7 +37,7 @@
   background-color: transparent;
   text-transform: uppercase;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     top: 0;
@@ -45,24 +45,17 @@
     background-color: #fff;
     width: 0;
     transition: all 1.5s ease;
-    z-index: -1 
-   }
-    &:hover::before {
-      width: 100%;
-      left: 0;
-      right: auto
-    }
-    &:hover {
-      color: #000;
+    z-index: -1;
+  }
+  &:hover::before {
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
+  &:hover {
+    color: #000;
   }
 }
-
-
-
-
-
-
-
 
 .about {
   min-height: 200px;
@@ -73,7 +66,7 @@
     grid-column: 1/3;
     line-height: 1.5;
     font-size: 26px;
-    font-family: 'vanitas';
+    font-family: "vanitas";
     font-weight: 800;
     @media screen and(max-width: 340px) {
       font-size: 15px;
@@ -100,7 +93,7 @@
     height: 70vh;
     background-size: 95vh;
     background-position: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, .2);
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
     padding: 1rem;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -127,11 +120,9 @@
   }
 }
 
-
 .products__card:hover {
   background-size: 90vh;
 }
-
 
 .products__btn {
   padding: 8px 10px;
@@ -149,7 +140,7 @@
   text-transform: uppercase;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     top: 0;
@@ -157,7 +148,7 @@
     background-color: white;
     width: 0;
     transition: all 1.5s ease;
-    z-index: -2
+    z-index: -2;
   }
 
   &:hover::before {

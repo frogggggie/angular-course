@@ -1,58 +1,86 @@
- <section class="category category__about" *ngIf="allStatus">
-          <div class="category__img" [style.background-image]='"url("+filteredProducts[0].category.images[0]+")"'></div>
-          <div class="category__description">
-               <p class="category__title">
-                   Collection  {{ filteredProducts[0].category.nameENG | titlecase }}
-               </p>
-               <p class="category__subtitle">
-                    {{ filteredProducts[0].category.description }}
-               </p>
-          </div>
-     </section>
+<section class="category category__about" *ngIf="allStatus">
+  <div
+    class="category__img"
+    [style.background-image]="
+      'url(' + filteredProducts[0].category.images[0] + ')'
+    "
+  ></div>
+  <div class="category__description">
+    <p class="category__title">
+      Collection {{ filteredProducts[0].category.nameENG | titlecase }}
+    </p>
+    <p class="category__subtitle">
+      {{ filteredProducts[0].category.description }}
+    </p>
+  </div>
+</section>
 
+<section class="cards cards-container">
+  <div
+    class="cards__item"
+    *ngFor="let product of filteredProducts | paginate: config"
+  >
+    <div
+      class="cards__img"
+      [style.background-image]="'url(' + product.images[0] + ')'"
+    ></div>
+    <div class="cards__about">
+      <p class="cards__title">
+        {{ product.name | titlecase }}
+      </p>
+      <p class="cards__scent">Smells like: {{ product.smell }}</p>
+      <p class="cards__price">
+        {{ product.price | currency }}
+      </p>
+      <a
+        class="cards__link"
+        [routerLink]="[
+          '/products/' + product.category.nameUrl,
+          product.id,
+          product.nameUrl
+        ]"
+      >
+        show more
+      </a>
+    </div>
+  </div>
 
-     <section class="cards cards-container">
-          <div class="cards__item" *ngFor="let product of filteredProducts | paginate: config">
-               <div class="cards__img" [style.background-image]='"url("+product.images[0]+")"'></div>
-               <div class="cards__about">
-                    <p class="cards__title">
-                         {{ product.name | titlecase }}
-                    </p>
-                    <p class="cards__scent">
-                         Smells like: {{ product.smell }}
-                    </p>
-                    <p class="cards__price">
-                         {{ product.price | currency }}
-                    </p>
-                    <a  class="cards__link" 
-                         [routerLink]="['/products/' + product.category.nameUrl, product.id, product.nameUrl]">
-                           show more
-                     </a>
-               </div>
-          </div>
-
-          <pagination-template #p="paginationApi" 
-                               [id]="config.id" 
-                               (pageChange)="config.currentPage = $event">
-
-               <div class="custom-pagination">
-                 <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
-                     <img src="/../assets/icons/arrow-left.png" alt="arrow-left" *ngIf="!p.isFirstPage()" (click)="p.previous()">
-                   </div> 
-                   <div class="page-number" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
-                         <span (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">{{ page.label }}</span>
-                       <div *ngIf="p.getCurrent() === page.value">
-                         <span>{{ page.label }}</span>
-                       </div>
-                   </div>
-                   <div class="pagination-next" [class.disabled]="p.isLastPage()">
-                     <img src="/../assets/icons/arrow-right.png" alt="arrow-right" *ngIf="!p.isLastPage()" (click)="p.next()">
-                   </div>
-               </div>
-           
-             </pagination-template>
-        
-     </section>
-    
- 
-   
+  <pagination-template
+    #p="paginationApi"
+    [id]="config.id"
+    (pageChange)="config.currentPage = $event"
+  >
+    <div class="custom-pagination">
+      <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+        <img
+          src="/../assets/icons/arrow-left.png"
+          alt="arrow-left"
+          *ngIf="!p.isFirstPage()"
+          (click)="p.previous()"
+        />
+      </div>
+      <div
+        class="page-number"
+        *ngFor="let page of p.pages"
+        [class.current]="p.getCurrent() === page.value"
+      >
+        <span
+          (click)="p.setCurrent(page.value)"
+          *ngIf="p.getCurrent() !== page.value"
+          >{{ page.label }}</span
+        >
+        <div *ngIf="p.getCurrent() === page.value">
+          <span>{{ page.label }}</span>
+        </div>
+      </div>
+      <div class="pagination-next" [class.disabled]="p.isLastPage()">
+        <img
+          src="/../assets/icons/arrow-right.png"
+          alt="arrow-right"
+          *ngIf="!p.isLastPage()"
+          (click)="p.next()"
+        />
+      </div>
+    </div>
+  </pagination-template>
+</section>

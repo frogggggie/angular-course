@@ -1,35 +1,31 @@
 <ng-container *ngIf="orders.length > 0; else container">
-    <div class="cards">
-        <p class="cards__title">Your orders</p>
-        <div class="cards__item" *ngFor="let order of orders">
-        <p *ngFor="let product of order.ordersDetails" class="cards__subittle">
-            {{ product.name | titlecase }}
-            {{ product.count }} item(s)
-          </p>
-          <p class="cards__date">
-            {{ order.date | date:'shortDate' }}
-          </p>
-          <p class="cards__price">
-            {{ order.totalPayment | currency }}
-          </p>
-      </div>
+  <div class="cards">
+    <p class="cards__title">Your orders</p>
+    <div class="cards__item" *ngFor="let order of orders">
+      <p *ngFor="let product of order.ordersDetails" class="cards__subittle">
+        {{ product.name | titlecase }}
+        {{ product.count }} item(s)
+      </p>
+      <p class="cards__date">
+        {{ order.date | date: "shortDate" }}
+      </p>
+      <p class="cards__price">
+        {{ order.totalPayment | currency }}
+      </p>
     </div>
+  </div>
 </ng-container>
 
-
-
-
-
 <ng-template #container>
-    <div class="empty">
-        <div class="empty__content">
-            <p class="empty__title text-center">
-                You have no orders yet 
-            </p>
-            <button class="btn-block button empty__btn" 
-                    [routerLink]="['/products/all']">
-                    shop our products 
-            </button>
-        </div>
+  <div class="empty">
+    <div class="empty__content">
+      <p class="empty__title text-center">You have no orders yet</p>
+      <button
+        class="btn-block button empty__btn"
+        [routerLink]="['/products/all']"
+      >
+        shop our products
+      </button>
     </div>
+  </div>
 </ng-template>

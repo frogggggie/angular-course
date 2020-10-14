@@ -1,128 +1,146 @@
 <ng-container *ngIf="localProducts.length == 0; else ordersContainer">
-    <div class="empty">
-        <div class="empty__content">
-            <p class="empty__title text-center">
-                your cart is empty
-            </p>
-            <button class="btn-block button empty__btn" 
-                    [routerLink]="['/products/all']">
-                    shop our products
-            </button>
-        </div>
+  <div class="empty">
+    <div class="empty__content">
+      <p class="empty__title text-center">your cart is empty</p>
+      <button
+        class="btn-block button empty__btn"
+        [routerLink]="['/products/all']"
+      >
+        shop our products
+      </button>
     </div>
+  </div>
 </ng-container>
 
-
 <ng-template #ordersContainer>
+  <section class="cart cart-container">
+    <div class="cart__heading">
+      <p class="cart__title">Your Cart</p>
+      <a [routerLink]="['/home']" class="cart__link">Keep Shopping</a>
+    </div>
 
-    <section class="cart cart-container">
-        <div class="cart__heading">
-            <p class="cart__title">Your Cart</p>
-            <a [routerLink]="[ '/home' ]" class="cart__link">Keep Shopping</a>
-        </div>
+    <div class="cart__item" *ngFor="let product of localProducts">
+      <div
+        class="cart__image"
+        [style.background-image]="'url(' + product.images[0] + ''"
+      ></div>
+      <p class="cart__name">
+        {{ product.name | titlecase }}
+      </p>
+      <div class="cart__count">
+        <p>Quantity:</p>
+        <input type="text" [value]="product.count" class="cart__inpt" />
+      </div>
+      <p class="cart__price">
+        {{ product.price | currency }}
+      </p>
+      <div class="cart__icon" (click)="removeLocalProduct(product)">
+        <span>&times;</span>
+      </div>
+    </div>
 
-        <div class="cart__item" *ngFor="let product of localProducts">
-            <div class="cart__image" [style.background-image]='"url("+product.images[0]+""'></div>
-            <p class="cart__name">
-                {{ product.name  | titlecase }}
-            </p>
-            <div class="cart__count">
-                <p>Quantity:</p> 
-                <input type="text" [value]='product.count' class="cart__inpt">
-            </div>
-            <p class="cart__price"> 
-                {{ product.price | currency }} 
-             </p>
-            <div class="cart__icon" (click)="removeLocalProduct(product)">
-               <span>&times;</span>
-            </div>
-         </div>
+    <p class="cart__bottom">
+      <span class="cart__total">
+        {{ totalPrice | currency }}
+      </span>
+    </p>
+  </section>
 
-        <p class="cart__bottom">
-            <span class="cart__total">
-                {{ totalPrice | currency }}
-            </span>
-        </p>
+  <section class="order order-container">
+    <p class="order__title">Checkout</p>
 
-    </section>
+    <form class="order__form" #orderForm="ngForm">
+      <mat-radio-group
+        [(ngModel)]="order.payment"
+        #payment="ngModel"
+        name="payment"
+        required
+      >
+        <mat-radio-button value="cash">Cash</mat-radio-button>
+        <mat-radio-button value="card">Card</mat-radio-button>
+        <mat-radio-button value="delivery">At delivery</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          required
+          [(ngModel)]="order.userName"
+          #userName="ngModel"
+          name="userName"
+        />
+      </mat-form-field>
 
+      <mat-form-field appearance="outline">
+        <mat-label>Phone number</mat-label>
+        <input
+          type="text"
+          [textMask]="{ mask: phoneMask }"
+          matInput
+          required
+          [(ngModel)]="order.userPhone"
+          #phone="ngModel"
+          name="phone"
+        />
+      </mat-form-field>
 
- <section class="order order-container">
-
-  <p class="order__title">Checkout</p>
-
-    <form class="order__form" #orderForm='ngForm'>
-     <mat-radio-group [(ngModel)]="order.payment"  #payment='ngModel' name='payment' required>
-       <mat-radio-button value='cash'>Cash</mat-radio-button>
-       <mat-radio-button value='card'>Card</mat-radio-button>
-       <mat-radio-button value='delivery'>At delivery</mat-radio-button>
-     </mat-radio-group>
-     <mat-form-field appearance='outline'>
-       <mat-label>Name</mat-label>
-       <input matInput 
-              required [(ngModel)]="order.userName"
-              #userName='ngModel' 
-              name="userName">
-     </mat-form-field>
-
-     <mat-form-field appearance='outline'> 
-       <mat-label>Phone number</mat-label>
-       <input type="text" 
-              [textMask]="{mask: phoneMask}" 
-              matInput required 
-              [(ngModel)]="order.userPhone" 
-              #phone='ngModel' 
-              name='phone'>
-     </mat-form-field>
-       
-     <mat-form-field appearance='outline'> 
+      <mat-form-field appearance="outline">
         <mat-label>Comment</mat-label>
-        <textarea matInput 
-                  [(ngModel)]="order.userComment" 
-                  #userComment='ngModel' 
-                  name='userComment'>
+        <textarea
+          matInput
+          [(ngModel)]="order.userComment"
+          #userComment="ngModel"
+          name="userComment"
+        >
         </textarea>
       </mat-form-field>
-    
-    <mat-form-field appearance="outline">
+
+      <mat-form-field appearance="outline">
         <mat-label>City</mat-label>
-        <mat-select  required 
-                     [(ngModel)]="order.userCity" 
-                     #userCity='ngModel' 
-                     name='userCity'>
-            <mat-option value='lviv'>Lviv</mat-option>
-            <mat-option value='kyiv'>Kyiv</mat-option>
-            <mat-option value='dnipro'>Dnipro</mat-option>
-            <mat-option value='vinnutsy'>Vinnutsy</mat-option>
+        <mat-select
+          required
+          [(ngModel)]="order.userCity"
+          #userCity="ngModel"
+          name="userCity"
+        >
+          <mat-option value="lviv">Lviv</mat-option>
+          <mat-option value="kyiv">Kyiv</mat-option>
+          <mat-option value="dnipro">Dnipro</mat-option>
+          <mat-option value="vinnutsy">Vinnutsy</mat-option>
         </mat-select>
-     </mat-form-field>
-    
-    
-      <mat-form-field appearance='outline'>
-          <mat-label>Street</mat-label>
-          <input type="text" 
-                 matInput required 
-                 [(ngModel)]="order.userStreet" 
-                 #userStreet='ngModel' 
-                 name='userStreet'>
       </mat-form-field>
-    
-      <mat-form-field appearance='outline'>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input
+          type="text"
+          matInput
+          required
+          [(ngModel)]="order.userStreet"
+          #userStreet="ngModel"
+          name="userStreet"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
         <mat-label>House number</mat-label>
-        <input type="text" 
-               matInput required 
-               [(ngModel)]="order.userHouse" 
-               #userHouse='ngModel' 
-               name='userHouse'>
+        <input
+          type="text"
+          matInput
+          required
+          [(ngModel)]="order.userHouse"
+          #userHouse="ngModel"
+          name="userHouse"
+        />
       </mat-form-field>
 
-
-    <button class="order__btn" 
-            (click)='addOrder(orderForm)' 
-            [disabled]='orderForm.invalid'> 
-               Order
-    </button> 
-  </form>
-  
- </section>
+      <button
+        class="order__btn"
+        (click)="addOrder(orderForm)"
+        [disabled]="orderForm.invalid"
+      >
+        Order
+      </button>
+    </form>
+  </section>
 </ng-template>

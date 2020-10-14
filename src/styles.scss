@@ -1,38 +1,40 @@
-@import './assets/styles/variables.scss';
-@import './assets/styles/mixins.scss';
-@import './theme.scss';
+@import "./assets/styles/variables.scss";
+@import "./assets/styles/mixins.scss";
+@import "./theme.scss";
 
 @font-face {
-  font-family: 'crimson';
+  font-family: "crimson";
   src: url(./assets/fonts/CrimsonText-Regular.ttf);
 }
 
 @font-face {
-  font-family: 'crimsonBold';
+  font-family: "crimsonBold";
   src: url(./assets/fonts/CrimsonText-SemiBold.ttf);
 }
 
 @font-face {
-  font-family: 'vanitas';
+  font-family: "vanitas";
   src: url(./assets/fonts/vanitas.ttf);
 }
 
 @font-face {
-  font-family: 'garamond';
+  font-family: "garamond";
   src: url(./assets/fonts/EBGaramond-VariableFont_wght.ttf);
 }
 
-@font-face{
-  font-family: 'playfair';
+@font-face {
+  font-family: "playfair";
   src: url(./assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf);
 }
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Oxygen:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Oxygen:wght@700&display=swap");
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-
-html, body {
+html,
+body {
   height: 100vh;
 }
 body {
@@ -42,7 +44,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 ul {
@@ -53,9 +55,3 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
-
-
-
-
-
-

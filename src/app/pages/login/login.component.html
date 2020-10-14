@@ -1,42 +1,51 @@
 <div class="login">
-  <form #signInForm='ngForm' (submit)='signIn()'>
+  <form #signInForm="ngForm" (submit)="signIn()">
     <p class="login__title">LOGIN</p>
     <p class="login__subtitle">Please enter your e-mail and password:</p>
-    <mat-form-field class="btn-block" appearance='outline'>
+    <mat-form-field class="btn-block" appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput
-            [(ngModel)]="user.email"
-             #email='ngModel'
-             name='email'
-             pattern="\S+@\S+\.\S+"
-             required>
+      <input
+        matInput
+        [(ngModel)]="user.email"
+        #email="ngModel"
+        name="email"
+        pattern="\S+@\S+\.\S+"
+        required
+      />
     </mat-form-field>
-    <mat-form-field class="btn-block" appearance='outline'>
+    <mat-form-field class="btn-block" appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput
-             [(ngModel)]="user.password"
-             #email='ngModel'
-             name='password'
-             pattern="^[A-Za-z]\w{7,14}$"
-             [type]="hide ? 'password' : 'text'"
-             required>
-      <button mat-icon-button matSuffix (click)="hide = !hide" 
-             [attr.aria-label]="'Hide password'" 
-             [attr.aria-pressed]="hide">
+      <input
+        matInput
+        [(ngModel)]="user.password"
+        #email="ngModel"
+        name="password"
+        pattern="^[A-Za-z]\w{7,14}$"
+        [type]="hide ? 'password' : 'text'"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
         <mat-icon>
-          {{hide ? 'visibility_off' : 'visibility'}}
+          {{ hide ? "visibility_off" : "visibility" }}
         </mat-icon>
       </button>
     </mat-form-field>
-  <p class="text-danger error" [style.visibility]="loginStatus? 'visible' : 'hidden'">{{ loginError }}</p>
+    <p
+      class="text-danger error"
+      [style.visibility]="loginStatus ? 'visible' : 'hidden'"
+    >
+      {{ loginError }}
+    </p>
     <button class="btn-block login__btn">LOGIN</button>
     <div class="py-3">
-      <span class="text-muted  login__hint">
-          Don't have an account?
-      </span>
-      <a [routerLink]="['/register']" class="login__link">
-        Create one
-      </a>
+      <span class="text-muted login__hint"> Don't have an account? </span>
+      <a [routerLink]="['/register']" class="login__link"> Create one </a>
     </div>
   </form>
 </div>

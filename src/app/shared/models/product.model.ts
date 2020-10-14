@@ -1,6 +1,5 @@
-import {ICategory} from './../interfaces/category.interface';
-import {IProduct} from './../interfaces/product.interface';
-
+import { ICategory } from './../interfaces/category.interface';
+import { IProduct } from './../interfaces/product.interface';
 
 export class Product implements IProduct {
   constructor(
@@ -13,7 +12,6 @@ export class Product implements IProduct {
     public description: string,
     public details: string,
     public count: number,
-    public images?: Array<string>,
-  ) {
-  }
+    public images?: Array<string>
+  ) {}
 }

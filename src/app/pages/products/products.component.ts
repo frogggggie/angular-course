@@ -8,10 +8,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-
   productsArray: Array<IProduct> = [];
   filteredProducts: Array<IProduct> = [];
   subscription: Subscription;
@@ -22,24 +21,23 @@ export class ProductsComponent implements OnInit {
     id: 'custom',
     itemsPerPage: 6,
     currentPage: 1,
-    totalItems: this.filteredProducts.length
-  }
+    totalItems: this.filteredProducts.length,
+  };
 
   constructor(
     private service: AfServiceService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd ) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
         let category = this.activatedRoute.snapshot.paramMap.get('category');
         this.getFirebaseProducts(category);
       }
-    })
-   }
+    });
+  }
 
-
-   onPageChange(event){
+  onPageChange(event) {
     this.config.currentPage = event;
   }
 
@@ -48,30 +46,25 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe() 
+    this.subscription.unsubscribe();
   }
-
 
   getFirebaseProducts(prod?): void {
     prod = prod || this.activatedRoute.snapshot.paramMap.get('category');
-    this.subscription = this.service.getProducts()
-      .subscribe(data => {
-        this.productsArray = data.map(
-          product => {
-            const data = product.payload.doc.data() as IProduct;
-            return data;
-          });
-          this.filteredProducts = this.productsArray.filter(product => product.category.nameUrl === prod);
-          this.allStatus = true;
-          if(prod === 'all') {
-            this.filteredProducts = this.productsArray;
-            this.allStatus = false;
-          }
-          this.config.totalItems = this.filteredProducts.length;
+    this.subscription = this.service.getProducts().subscribe((data) => {
+      this.productsArray = data.map((product) => {
+        const data = product.payload.doc.data() as IProduct;
+        return data;
       });
+      this.filteredProducts = this.productsArray.filter(
+        (product) => product.category.nameUrl === prod
+      );
+      this.allStatus = true;
+      if (prod === 'all') {
+        this.filteredProducts = this.productsArray;
+        this.allStatus = false;
+      }
+      this.config.totalItems = this.filteredProducts.length;
+    });
   }
-
-
-
 }
-
