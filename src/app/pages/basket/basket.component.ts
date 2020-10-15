@@ -120,7 +120,7 @@ export class BasketComponent implements OnInit {
       date
     );
 
-    if (this.order.userComment) {
+      if (this.order.userComment !== null) {
       order.userComment = this.order.userComment;
     }
     if (this.userStatus) {
